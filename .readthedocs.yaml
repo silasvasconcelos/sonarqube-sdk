@@ -8,8 +8,9 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.11"
-    uv: "latest"
   commands:
+    # Install uv
+    - pip install uv
     # Install the package with docs dependencies using uv
     - uv sync --extra docs --frozen
     # Build the documentation with Sphinx
