@@ -35,10 +35,6 @@ class BaseAPI:
     to the SonarQube API. All API domain classes (like ApplicationsAPI,
     ProjectsAPI, etc.) inherit from this class.
 
-    Attributes:
-        API_PATH: Base path for this API domain (e.g., "/api/applications").
-        _client: HTTP client for making requests.
-
     Example:
         Using in a subclass::
 

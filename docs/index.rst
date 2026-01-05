@@ -50,20 +50,6 @@ Quick Start
        severities=["CRITICAL", "BLOCKER"]
    )
 
-API Reference
--------------
-
-.. toctree::
-   :maxdepth: 2
-
-   api/client
-   api/applications
-   api/projects
-   api/issues
-   api/rules
-   api/qualitygates
-   api/qualityprofiles
-
 Indices and tables
 ==================
 

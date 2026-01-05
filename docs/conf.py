@@ -1,4 +1,5 @@
 """Sphinx configuration for SonarQube SDK documentation."""
+
 import os
 import sys
 
@@ -35,12 +36,15 @@ autodoc_default_options = {
     "member-order": "bysource",
     "special-members": "__init__",
     "undoc-members": True,
-    "exclude-members": "__weakref__",
+    "exclude-members": "__weakref__, API_PATH",
     "show-inheritance": True,
 }
 
 autodoc_typehints = "both"
 autodoc_typehints_format = "short"
+
+# Don't document inherited members to avoid duplicates
+autodoc_inherit_docstrings = False
 
 # Napoleon configuration (Google/NumPy style docstrings)
 napoleon_google_docstring = True
@@ -59,11 +63,14 @@ napoleon_type_aliases = None
 # Intersphinx configuration
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "httpx": ("https://www.python-httpx.org/", None),
     "pydantic": ("https://docs.pydantic.dev/latest/", None),
 }
+
+# Suppress duplicate object description warnings
+# This happens because the same objects are sometimes documented in multiple places
+# (e.g., models referenced by API methods and documented separately)
+suppress_warnings = ["autodoc.duplicate_object"]
 
 # sphinx-autodoc-typehints configuration
 typehints_defaults = "comma"
 always_document_param_types = True
-

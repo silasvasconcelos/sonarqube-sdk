@@ -56,23 +56,6 @@ class SonarQubeClient:
     namespace properties. Each namespace corresponds to an API domain
     (e.g., projects, issues, rules).
 
-    Attributes:
-        base_url: Base URL of the SonarQube instance.
-        applications: API for managing applications.
-        components: API for searching components.
-        hotspots: API for managing security hotspots.
-        issues: API for managing issues.
-        measures: API for getting measures.
-        projects: API for managing projects.
-        qualitygates: API for managing quality gates.
-        qualityprofiles: API for managing quality profiles.
-        rules: API for managing rules.
-        settings: API for managing settings.
-        sources: API for getting source code.
-        system: API for system information.
-        users: API for managing users.
-        user_tokens: API for managing user tokens.
-
     Example:
         Basic usage::
 
