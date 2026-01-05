@@ -5,7 +5,7 @@ This module provides models for the /api/user_tokens endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -47,7 +47,7 @@ class UserToken(SonarQubeModel):
         alias="isExpired",
         description="Whether the token is expired",
     )
-    project: Optional[dict] = Field(
+    project: Optional[dict[str, Any]] = Field(
         default=None,
         description="Project (for project tokens)",
     )
@@ -90,7 +90,7 @@ class UserTokenSearchResponse(SonarQubeModel):
     """
 
     login: str = Field(description="User login")
-    user_tokens: List[UserToken] = Field(
+    user_tokens: list[UserToken] = Field(
         default_factory=list,
         alias="userTokens",
         description="List of tokens",

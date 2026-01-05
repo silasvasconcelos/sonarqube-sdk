@@ -5,7 +5,7 @@ This module provides models for the /api/system endpoints.
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -22,8 +22,10 @@ class SystemHealth(SonarQubeModel):
     """
 
     health: str = Field(description="Health status")
-    causes: Optional[List[str]] = Field(default=None, description="Causes")
-    nodes: Optional[List[dict]] = Field(default=None, description="Cluster nodes")
+    causes: Optional[list[str]] = Field(default=None, description="Causes")
+    nodes: Optional[list[dict[str, Any]]] = Field(
+        default=None, description="Cluster nodes"
+    )
 
 
 class SystemStatus(SonarQubeModel):
@@ -56,22 +58,22 @@ class SystemInfo(SonarQubeModel):
     health: Optional[str] = Field(
         default=None, alias="Health", description="Health status"
     )
-    causes: Optional[List[str]] = Field(
+    causes: Optional[list[str]] = Field(
         default=None,
         alias="Health Causes",
         description="Health causes",
     )
-    system: Optional[Dict[str, Any]] = Field(
+    system: Optional[dict[str, Any]] = Field(
         default=None,
         alias="System",
         description="System section",
     )
-    database: Optional[Dict[str, Any]] = Field(
+    database: Optional[dict[str, Any]] = Field(
         default=None,
         alias="Database",
         description="Database section",
     )
-    plugins: Optional[Dict[str, Any]] = Field(
+    plugins: Optional[dict[str, Any]] = Field(
         default=None,
         alias="Plugins",
         description="Installed plugins",
@@ -87,7 +89,7 @@ class SystemUpgradesResponse(SonarQubeModel):
         installed_version_active: Whether installed version is active.
     """
 
-    upgrades: Optional[List[dict]] = Field(
+    upgrades: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Available upgrades",
     )

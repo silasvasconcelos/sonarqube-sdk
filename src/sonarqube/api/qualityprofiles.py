@@ -17,7 +17,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.qualityprofiles import (
@@ -78,7 +78,7 @@ class QualityProfilesAPI(BaseAPI):
             ...     key="py-my-profile-12345", rule="python:S1234", severity="MAJOR"
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "key": key,
             "rule": rule,
         }
@@ -94,24 +94,24 @@ class QualityProfilesAPI(BaseAPI):
     def activate_rules(
         self,
         target_key: str,
-        active_severities: Optional[List[str]] = None,
+        active_severities: Optional[list[str]] = None,
         asc: Optional[bool] = None,
         available_since: Optional[str] = None,
-        inheritance: Optional[List[str]] = None,
+        inheritance: Optional[list[str]] = None,
         is_template: Optional[bool] = None,
-        languages: Optional[List[str]] = None,
+        languages: Optional[list[str]] = None,
         q: Optional[str] = None,
         qprofile: Optional[str] = None,
-        repositories: Optional[List[str]] = None,
+        repositories: Optional[list[str]] = None,
         rule_key: Optional[str] = None,
         s: Optional[str] = None,
-        severities: Optional[List[str]] = None,
-        statuses: Optional[List[str]] = None,
-        tags: Optional[List[str]] = None,
+        severities: Optional[list[str]] = None,
+        statuses: Optional[list[str]] = None,
+        tags: Optional[list[str]] = None,
         target_severity: Optional[str] = None,
         template_key: Optional[str] = None,
-        types: Optional[List[str]] = None,
-    ) -> dict:
+        types: Optional[list[str]] = None,
+    ) -> dict[str, Any]:
         """Bulk activate rules in a quality profile.
 
         Requires 'Administer Quality Profiles' permission.
@@ -144,7 +144,7 @@ class QualityProfilesAPI(BaseAPI):
             ...     target_key="py-my-profile-12345", languages=["py"]
             ... )
         """
-        data: dict = {"targetKey": target_key}
+        data: dict[str, Any] = {"targetKey": target_key}
 
         if active_severities:
             data["active_severities"] = ",".join(active_severities)
@@ -295,7 +295,7 @@ class QualityProfilesAPI(BaseAPI):
             ...     parent_quality_profile="Sonar way",
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "language": language,
             "qualityProfile": quality_profile,
         }
@@ -383,23 +383,23 @@ class QualityProfilesAPI(BaseAPI):
     def deactivate_rules(
         self,
         target_key: str,
-        active_severities: Optional[List[str]] = None,
+        active_severities: Optional[list[str]] = None,
         asc: Optional[bool] = None,
         available_since: Optional[str] = None,
-        inheritance: Optional[List[str]] = None,
+        inheritance: Optional[list[str]] = None,
         is_template: Optional[bool] = None,
-        languages: Optional[List[str]] = None,
+        languages: Optional[list[str]] = None,
         q: Optional[str] = None,
         qprofile: Optional[str] = None,
-        repositories: Optional[List[str]] = None,
+        repositories: Optional[list[str]] = None,
         rule_key: Optional[str] = None,
         s: Optional[str] = None,
-        severities: Optional[List[str]] = None,
-        statuses: Optional[List[str]] = None,
-        tags: Optional[List[str]] = None,
+        severities: Optional[list[str]] = None,
+        statuses: Optional[list[str]] = None,
+        tags: Optional[list[str]] = None,
         template_key: Optional[str] = None,
-        types: Optional[List[str]] = None,
-    ) -> dict:
+        types: Optional[list[str]] = None,
+    ) -> dict[str, Any]:
         """Bulk deactivate rules in a quality profile.
 
         Requires 'Administer Quality Profiles' permission.
@@ -431,7 +431,7 @@ class QualityProfilesAPI(BaseAPI):
             ...     target_key="py-my-profile-12345", tags=["deprecated"]
             ... )
         """
-        data: dict = {"targetKey": target_key}
+        data: dict[str, Any] = {"targetKey": target_key}
 
         if active_severities:
             data["active_severities"] = ",".join(active_severities)
@@ -620,7 +620,7 @@ class QualityProfilesAPI(BaseAPI):
             >>> for profile in response.profiles:
             ...     print(f"{profile.name} ({profile.language})")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if defaults is not None:
             params["defaults"] = str(defaults).lower()
@@ -670,7 +670,7 @@ class QualityProfilesAPI(BaseAPI):
         Example:
             >>> profile = client.qualityprofiles.show(key="py-my-profile-12345")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
         if key:
             params["key"] = key
         if compare_to_sonar_way is not None:

@@ -1,7 +1,7 @@
 .PHONY: help install install-dev sync lock update clean clean-all \
         lint lint-fix format format-check type security check \
         test test-fast test-cov test-unit test-integration \
-        tox tox-py38 tox-py39 tox-py310 tox-py311 tox-py312 tox-py313 \
+        tox tox-py39 tox-py310 tox-py311 tox-py312 tox-py313 \
         docs docs-serve docs-clean \
         build publish publish-test version \
         pre-commit ci
@@ -105,9 +105,6 @@ tox: ## Run tox for all Python versions
 
 tox-parallel: ## Run tox in parallel mode
 	uv run tox -p auto
-
-tox-py38: ## Run tox for Python 3.8
-	uv run tox -e py38
 
 tox-py39: ## Run tox for Python 3.9
 	uv run tox -e py39

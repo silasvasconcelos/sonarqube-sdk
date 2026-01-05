@@ -18,7 +18,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Optional, TypeVar
 
 from pydantic import BaseModel
 
@@ -80,8 +80,8 @@ class BaseAPI:
     def _get(
         self,
         endpoint: str,
-        params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Make a GET request to the API.
 
         Args:
@@ -99,9 +99,9 @@ class BaseAPI:
     def _post(
         self,
         endpoint: str,
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Make a POST request to the API.
 
         Args:
@@ -120,8 +120,8 @@ class BaseAPI:
     def _get_model(
         self,
         endpoint: str,
-        response_model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
+        response_model: type[T],
+        params: Optional[dict[str, Any]] = None,
     ) -> T:
         """Make a GET request and deserialize to a Pydantic model.
 
@@ -145,9 +145,9 @@ class BaseAPI:
     def _post_model(
         self,
         endpoint: str,
-        response_model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
+        response_model: type[T],
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
     ) -> T:
         """Make a POST request and deserialize to a Pydantic model.
 

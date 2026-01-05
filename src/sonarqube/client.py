@@ -29,7 +29,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Optional, Type
+from typing import Optional
 
 from sonarqube.api.applications import ApplicationsAPI
 from sonarqube.api.components import ComponentsAPI
@@ -199,7 +199,7 @@ class SonarQubeClient:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[BaseException]],
+        exc_type: Optional[type[BaseException]],
         exc_val: Optional[BaseException],
         exc_tb: object,
     ) -> None:

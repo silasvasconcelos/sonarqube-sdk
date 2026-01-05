@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.sources import ScmResponse, SourcesResponse
@@ -91,7 +91,7 @@ class SourcesAPI(BaseAPI):
             >>> for line in response.sources:
             ...     print(f"{line.line}: {line.code}")
         """
-        params: dict = {"key": key}
+        params: dict[str, Any] = {"key": key}
 
         if branch:
             params["branch"] = branch
@@ -127,7 +127,7 @@ class SourcesAPI(BaseAPI):
         Example:
             >>> scm = client.sources.scm(key="my-project:src/main.py")
         """
-        params: dict = {"key": key}
+        params: dict[str, Any] = {"key": key}
 
         if commits_by_line is not None:
             params["commits_by_line"] = str(commits_by_line).lower()

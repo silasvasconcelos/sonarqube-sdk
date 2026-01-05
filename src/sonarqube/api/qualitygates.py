@@ -21,7 +21,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.qualitygates import (
@@ -125,7 +125,7 @@ class QualityGatesAPI(BaseAPI):
             ...     gate_name="My Quality Gate", metric="new_coverage", op="LT", error="80"
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "gateName": gate_name,
             "metric": metric,
             "error": error,
@@ -162,7 +162,7 @@ class QualityGatesAPI(BaseAPI):
         Example:
             >>> client.qualitygates.deselect(project_key="my-project")
         """
-        data: dict = {}
+        data: dict[str, Any] = {}
         if project_key:
             data["projectKey"] = project_key
 
@@ -181,7 +181,7 @@ class QualityGatesAPI(BaseAPI):
         """
         self._post("/destroy", data={"name": name})
 
-    def get_by_project(self, project: str) -> dict:
+    def get_by_project(self, project: str) -> dict[str, Any]:
         """Get the quality gate for a project.
 
         Requires 'Browse' permission on the project.
@@ -322,7 +322,7 @@ class QualityGatesAPI(BaseAPI):
         Example:
             >>> client.qualitygates.select(gate_name="Sonar way", project_key="my-project")
         """
-        data: dict = {"gateName": gate_name}
+        data: dict[str, Any] = {"gateName": gate_name}
         if project_key:
             data["projectKey"] = project_key
 
@@ -383,7 +383,7 @@ class QualityGatesAPI(BaseAPI):
         Example:
             >>> client.qualitygates.update_condition(id=123, metric="new_coverage", error="85")
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "id": id,
             "error": error,
             "metric": metric,

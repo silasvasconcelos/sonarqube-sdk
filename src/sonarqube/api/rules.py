@@ -17,7 +17,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.rules import (
@@ -92,7 +92,7 @@ class RulesAPI(BaseAPI):
             ...     template_key="python:S100",
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "customKey": custom_key,
             "markdownDescription": markdown_description,
             "name": name,
@@ -160,35 +160,35 @@ class RulesAPI(BaseAPI):
     def search(
         self,
         activation: Optional[bool] = None,
-        active_severities: Optional[List[str]] = None,
+        active_severities: Optional[list[str]] = None,
         asc: Optional[bool] = None,
         available_since: Optional[str] = None,
-        clean_code_attribute_categories: Optional[List[str]] = None,
-        cwe: Optional[List[str]] = None,
-        f: Optional[List[str]] = None,
-        facets: Optional[List[str]] = None,
-        impact_severities: Optional[List[str]] = None,
-        impact_software_qualities: Optional[List[str]] = None,
+        clean_code_attribute_categories: Optional[list[str]] = None,
+        cwe: Optional[list[str]] = None,
+        f: Optional[list[str]] = None,
+        facets: Optional[list[str]] = None,
+        impact_severities: Optional[list[str]] = None,
+        impact_software_qualities: Optional[list[str]] = None,
         include_external: Optional[bool] = None,
-        inheritance: Optional[List[str]] = None,
+        inheritance: Optional[list[str]] = None,
         is_template: Optional[bool] = None,
-        languages: Optional[List[str]] = None,
-        owasp_top10: Optional[List[str]] = None,
-        owasp_top10_2021: Optional[List[str]] = None,
+        languages: Optional[list[str]] = None,
+        owasp_top10: Optional[list[str]] = None,
+        owasp_top10_2021: Optional[list[str]] = None,
         p: Optional[int] = None,
         ps: Optional[int] = None,
         q: Optional[str] = None,
         qprofile: Optional[str] = None,
-        repositories: Optional[List[str]] = None,
+        repositories: Optional[list[str]] = None,
         rule_key: Optional[str] = None,
         s: Optional[str] = None,
-        sans_top25: Optional[List[str]] = None,
-        severities: Optional[List[str]] = None,
-        sonarsource_security: Optional[List[str]] = None,
-        statuses: Optional[List[str]] = None,
-        tags: Optional[List[str]] = None,
+        sans_top25: Optional[list[str]] = None,
+        severities: Optional[list[str]] = None,
+        sonarsource_security: Optional[list[str]] = None,
+        statuses: Optional[list[str]] = None,
+        tags: Optional[list[str]] = None,
         template_key: Optional[str] = None,
-        types: Optional[List[str]] = None,
+        types: Optional[list[str]] = None,
     ) -> RuleSearchResponse:
         """Search for rules.
 
@@ -232,7 +232,7 @@ class RulesAPI(BaseAPI):
             >>> for rule in response.rules:
             ...     print(f"{rule.key}: {rule.name}")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if activation is not None:
             params["activation"] = str(activation).lower()
@@ -317,7 +317,7 @@ class RulesAPI(BaseAPI):
             >>> response = client.rules.show(key="python:S1234")
             >>> print(response.rule.name)
         """
-        params: dict = {"key": key}
+        params: dict[str, Any] = {"key": key}
         if actives is not None:
             params["actives"] = str(actives).lower()
 
@@ -363,7 +363,7 @@ class RulesAPI(BaseAPI):
         remediation_gap_multiplier: Optional[str] = None,
         severity: Optional[str] = None,
         status: Optional[str] = None,
-        tags: Optional[List[str]] = None,
+        tags: Optional[list[str]] = None,
     ) -> Rule:
         """Update a rule.
 
@@ -388,7 +388,7 @@ class RulesAPI(BaseAPI):
         Example:
             >>> rule = client.rules.update(key="python:S1234", tags=["team-a", "security"])
         """
-        data: dict = {"key": key}
+        data: dict[str, Any] = {"key": key}
 
         if markdown_description:
             data["markdownDescription"] = markdown_description

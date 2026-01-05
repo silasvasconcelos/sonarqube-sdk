@@ -5,7 +5,7 @@ This module provides models for the /api/hotspots endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -63,13 +63,13 @@ class Hotspot(SonarQubeModel):
         alias="updateDate",
         description="Update date",
     )
-    flows: Optional[List[dict]] = Field(default=None, description="Flows")
+    flows: Optional[list[dict[str, Any]]] = Field(default=None, description="Flows")
     rule_key: Optional[str] = Field(
         default=None,
         alias="ruleKey",
         description="Rule key",
     )
-    text_range: Optional[dict] = Field(
+    text_range: Optional[dict[str, Any]] = Field(
         default=None,
         alias="textRange",
         description="Text range",
@@ -86,11 +86,11 @@ class HotspotSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    hotspots: List[Hotspot] = Field(
+    hotspots: list[Hotspot] = Field(
         default_factory=list,
         description="List of hotspots",
     )
-    components: Optional[List[Component]] = Field(
+    components: Optional[list[Component]] = Field(
         default=None,
         description="Referenced components",
     )
@@ -118,9 +118,13 @@ class HotspotShowResponse(SonarQubeModel):
     """
 
     key: str = Field(description="Hotspot key")
-    component: Optional[dict] = Field(default=None, description="Component details")
-    project: Optional[dict] = Field(default=None, description="Project details")
-    rule: Optional[dict] = Field(default=None, description="Rule details")
+    component: Optional[dict[str, Any]] = Field(
+        default=None, description="Component details"
+    )
+    project: Optional[dict[str, Any]] = Field(
+        default=None, description="Project details"
+    )
+    rule: Optional[dict[str, Any]] = Field(default=None, description="Rule details")
     status: Optional[str] = Field(default=None, description="Status")
     resolution: Optional[str] = Field(default=None, description="Resolution")
     message: Optional[str] = Field(default=None, description="Message")
@@ -136,9 +140,15 @@ class HotspotShowResponse(SonarQubeModel):
         alias="updateDate",
         description="Update date",
     )
-    changelog: Optional[List[dict]] = Field(default=None, description="Changelog")
-    comment: Optional[List[dict]] = Field(default=None, description="Comments")
-    users: Optional[List[dict]] = Field(default=None, description="Referenced users")
+    changelog: Optional[list[dict[str, Any]]] = Field(
+        default=None, description="Changelog"
+    )
+    comment: Optional[list[dict[str, Any]]] = Field(
+        default=None, description="Comments"
+    )
+    users: Optional[list[dict[str, Any]]] = Field(
+        default=None, description="Referenced users"
+    )
     can_change_status: Optional[bool] = Field(
         default=None,
         alias="canChangeStatus",

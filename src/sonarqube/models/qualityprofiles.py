@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -111,7 +111,7 @@ class QualityProfile(SonarQubeModel):
         alias="projectCount",
         description="Number of projects using this profile",
     )
-    actions: Optional[Dict[str, Any]] = Field(
+    actions: Optional[dict[str, Any]] = Field(
         default=None,
         description="Available actions",
     )
@@ -130,11 +130,11 @@ class QualityProfileSearchResponse(SonarQubeModel):
         ...     print(f"{profile.name} ({profile.language})")
     """
 
-    profiles: List[QualityProfile] = Field(
+    profiles: list[QualityProfile] = Field(
         default_factory=list,
         description="List of quality profiles",
     )
-    actions: Optional[Dict[str, Any]] = Field(
+    actions: Optional[dict[str, Any]] = Field(
         default=None,
         description="Available actions",
     )
@@ -150,8 +150,8 @@ class QualityProfileCreateResponse(SonarQubeModel):
     """
 
     profile: QualityProfile = Field(description="Created quality profile")
-    warnings: Optional[List[str]] = Field(default=None, description="Warnings")
-    infos: Optional[List[str]] = Field(default=None, description="Info messages")
+    warnings: Optional[list[str]] = Field(default=None, description="Warnings")
+    infos: Optional[list[str]] = Field(default=None, description="Info messages")
 
 
 class QualityProfileShowResponse(SonarQubeModel):
@@ -174,11 +174,11 @@ class QualityProfileInheritanceResponse(SonarQubeModel):
     """
 
     profile: QualityProfile = Field(description="Profile details")
-    ancestors: Optional[List[QualityProfile]] = Field(
+    ancestors: Optional[list[QualityProfile]] = Field(
         default=None,
         description="Ancestor profiles",
     )
-    children: Optional[List[QualityProfile]] = Field(
+    children: Optional[list[QualityProfile]] = Field(
         default=None,
         description="Child profiles",
     )
@@ -219,7 +219,7 @@ class QualityProfileChangelogEntry(SonarQubeModel):
         alias="ruleName",
         description="Rule name",
     )
-    params: Optional[Dict[str, Any]] = Field(
+    params: Optional[dict[str, Any]] = Field(
         default=None,
         description="Changed parameters",
     )
@@ -233,11 +233,13 @@ class QualityProfileChangelogResponse(SonarQubeModel):
         paging: Paging information.
     """
 
-    events: List[QualityProfileChangelogEntry] = Field(
+    events: list[QualityProfileChangelogEntry] = Field(
         default_factory=list,
         description="Changelog entries",
     )
-    paging: Optional[dict] = Field(default=None, description="Paging information")
+    paging: Optional[dict[str, Any]] = Field(
+        default=None, description="Paging information"
+    )
     p: Optional[int] = Field(default=None, description="Page number")
     ps: Optional[int] = Field(default=None, description="Page size")
     total: Optional[int] = Field(default=None, description="Total count")
@@ -251,8 +253,8 @@ class QualityProfileProjectsResponse(SonarQubeModel):
         results: List of projects.
     """
 
-    paging: Optional[dict] = Field(default=None, description="Paging")
-    results: List[dict] = Field(default_factory=list, description="Projects")
+    paging: Optional[dict[str, Any]] = Field(default=None, description="Paging")
+    results: list[dict[str, Any]] = Field(default_factory=list, description="Projects")
 
 
 class RuleActivation(SonarQubeModel):
@@ -268,7 +270,7 @@ class RuleActivation(SonarQubeModel):
     q_profile: str = Field(alias="qProfile", description="Quality profile key")
     inherit: Optional[str] = Field(default=None, description="Inheritance status")
     severity: Optional[str] = Field(default=None, description="Rule severity")
-    params: Optional[List[dict]] = Field(
+    params: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Activation parameters",
     )

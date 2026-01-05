@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import base64
 from abc import ABC, abstractmethod
-from typing import Dict, Optional
+from typing import Optional
 
 
 class BaseAuth(ABC):
@@ -39,12 +39,12 @@ class BaseAuth(ABC):
                 def __init__(self, api_key: str) -> None:
                     self.api_key = api_key
 
-                def get_auth_headers(self) -> Dict[str, str]:
+                def get_auth_headers(self) -> dict[str, str]:
                     return {"X-API-Key": self.api_key}
     """
 
     @abstractmethod
-    def get_auth_headers(self) -> Dict[str, str]:
+    def get_auth_headers(self) -> dict[str, str]:
         """Return authentication headers to be included in requests.
 
         Returns:
@@ -89,7 +89,7 @@ class TokenAuth(BaseAuth):
             raise ValueError(msg)
         self.token = token
 
-    def get_auth_headers(self) -> Dict[str, str]:
+    def get_auth_headers(self) -> dict[str, str]:
         """Return Basic auth headers with token as username.
 
         The token is encoded as Base64 in the format "token:"
@@ -147,7 +147,7 @@ class BasicAuth(BaseAuth):
         self.username = username
         self.password = password
 
-    def get_auth_headers(self) -> Dict[str, str]:
+    def get_auth_headers(self) -> dict[str, str]:
         """Return Basic auth headers with username and password.
 
         The credentials are encoded as Base64 in the format

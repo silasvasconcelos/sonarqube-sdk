@@ -18,7 +18,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import Field
 
@@ -104,11 +104,11 @@ class Application(SonarQubeModel):
         default=None,
         description="Application visibility (public/private)",
     )
-    projects: Optional[List[ApplicationProject]] = Field(
+    projects: Optional[list[ApplicationProject]] = Field(
         default=None,
         description="List of projects in the application",
     )
-    branches: Optional[List[ApplicationBranch]] = Field(
+    branches: Optional[list[ApplicationBranch]] = Field(
         default=None,
         description="List of branches in the application",
     )
@@ -157,7 +157,7 @@ class ApplicationSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    applications: List[Application] = Field(
+    applications: list[Application] = Field(
         default_factory=list,
         description="List of applications",
     )
@@ -177,7 +177,7 @@ class ApplicationProjectsSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    projects: List[ApplicationProject] = Field(
+    projects: list[ApplicationProject] = Field(
         default_factory=list,
         description="List of projects",
     )
@@ -195,7 +195,7 @@ class ApplicationBranchesResponse(SonarQubeModel):
         ...     print(branch.name)
     """
 
-    branches: List[Branch] = Field(
+    branches: list[Branch] = Field(
         default_factory=list,
         description="List of branches",
     )
@@ -217,8 +217,8 @@ class CreateBranchRequest(SonarQubeModel):
 
     application: str = Field(description="Application key")
     branch: str = Field(description="Branch name to create")
-    project: List[str] = Field(description="Project keys to include")
-    project_branch: Optional[List[str]] = Field(
+    project: list[str] = Field(description="Project keys to include")
+    project_branch: Optional[list[str]] = Field(
         default=None,
         alias="projectBranch",
         description="Branch names for each project",

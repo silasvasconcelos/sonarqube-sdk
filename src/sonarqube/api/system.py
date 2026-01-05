@@ -16,6 +16,8 @@ Example:
 
 from __future__ import annotations
 
+from typing import Any
+
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.system import (
     SystemHealth,
@@ -33,7 +35,7 @@ class SystemAPI(BaseAPI):
 
     API_PATH = "/api/system"
 
-    def db_migration_status(self) -> dict:
+    def db_migration_status(self) -> dict[str, Any]:
         """Get database migration status.
 
         Returns:
@@ -59,7 +61,7 @@ class SystemAPI(BaseAPI):
         """
         return self._get_model("/health", SystemHealth)
 
-    def info(self) -> dict:
+    def info(self) -> dict[str, Any]:
         """Get detailed system information.
 
         Requires 'Administer System' permission.

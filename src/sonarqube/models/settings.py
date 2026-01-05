@@ -5,7 +5,7 @@ This module provides models for the /api/settings endpoints.
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -27,8 +27,8 @@ class Setting(SonarQubeModel):
 
     key: str = Field(description="Setting key")
     value: Optional[str] = Field(default=None, description="Setting value")
-    values: Optional[List[str]] = Field(default=None, description="Setting values")
-    fields_values: Optional[List[Dict[str, Any]]] = Field(
+    values: Optional[list[str]] = Field(default=None, description="Setting values")
+    fields_values: Optional[list[dict[str, Any]]] = Field(
         default=None,
         alias="fieldValues",
         description="Field values",
@@ -42,7 +42,7 @@ class Setting(SonarQubeModel):
         alias="parentValue",
         description="Parent value",
     )
-    parent_values: Optional[List[str]] = Field(
+    parent_values: Optional[list[str]] = Field(
         default=None,
         alias="parentValues",
         description="Parent values",
@@ -85,8 +85,8 @@ class SettingDefinition(SonarQubeModel):
         alias="multiValues",
         description="Whether multi-values are supported",
     )
-    options: Optional[List[str]] = Field(default=None, description="Options")
-    fields: Optional[List[dict]] = Field(default=None, description="Fields")
+    options: Optional[list[str]] = Field(default=None, description="Options")
+    fields: Optional[list[dict[str, Any]]] = Field(default=None, description="Fields")
 
 
 class SettingsListResponse(SonarQubeModel):
@@ -96,7 +96,7 @@ class SettingsListResponse(SonarQubeModel):
         definitions: List of setting definitions.
     """
 
-    definitions: List[SettingDefinition] = Field(
+    definitions: list[SettingDefinition] = Field(
         default_factory=list,
         description="Setting definitions",
     )
@@ -110,8 +110,8 @@ class SettingsValuesResponse(SonarQubeModel):
         set_secured_settings: List of secured settings that are set.
     """
 
-    settings: List[Setting] = Field(default_factory=list, description="Settings")
-    set_secured_settings: Optional[List[str]] = Field(
+    settings: list[Setting] = Field(default_factory=list, description="Settings")
+    set_secured_settings: Optional[list[str]] = Field(
         default=None,
         alias="setSecuredSettings",
         description="Secured settings that are set",

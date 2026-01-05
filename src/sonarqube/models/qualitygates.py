@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -65,11 +65,11 @@ class QualityGate(SonarQubeModel):
         alias="isBuiltIn",
         description="Whether this is built-in",
     )
-    actions: Optional[Dict[str, Any]] = Field(
+    actions: Optional[dict[str, Any]] = Field(
         default=None,
         description="Available actions",
     )
-    conditions: Optional[List[QualityGateCondition]] = Field(
+    conditions: Optional[list[QualityGateCondition]] = Field(
         default=None,
         description="List of conditions",
     )
@@ -100,7 +100,7 @@ class QualityGateListResponse(SonarQubeModel):
         actions: Available actions.
     """
 
-    qualitygates: List[QualityGate] = Field(
+    qualitygates: list[QualityGate] = Field(
         default_factory=list,
         description="List of quality gates",
     )
@@ -108,7 +108,7 @@ class QualityGateListResponse(SonarQubeModel):
         default=None,
         description="Default quality gate ID",
     )
-    actions: Optional[Dict[str, Any]] = Field(
+    actions: Optional[dict[str, Any]] = Field(
         default=None,
         description="Available actions",
     )
@@ -138,11 +138,11 @@ class QualityGateShowResponse(SonarQubeModel):
         alias="isBuiltIn",
         description="Whether this is built-in",
     )
-    conditions: Optional[List[QualityGateCondition]] = Field(
+    conditions: Optional[list[QualityGateCondition]] = Field(
         default=None,
         description="List of conditions",
     )
-    actions: Optional[Dict[str, Any]] = Field(
+    actions: Optional[dict[str, Any]] = Field(
         default=None,
         description="Available actions",
     )
@@ -189,11 +189,11 @@ class ProjectStatus(SonarQubeModel):
     """
 
     status: str = Field(description="Overall status")
-    conditions: Optional[List[ProjectStatusCondition]] = Field(
+    conditions: Optional[list[ProjectStatusCondition]] = Field(
         default=None,
         description="Condition statuses",
     )
-    periods: Optional[List[dict]] = Field(
+    periods: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Analysis periods",
     )
@@ -241,5 +241,5 @@ class SearchProjectsResponse(SonarQubeModel):
         results: List of projects.
     """
 
-    paging: Optional[dict] = Field(default=None, description="Paging")
-    results: List[dict] = Field(default_factory=list, description="Results")
+    paging: Optional[dict[str, Any]] = Field(default=None, description="Paging")
+    results: list[dict[str, Any]] = Field(default_factory=list, description="Results")

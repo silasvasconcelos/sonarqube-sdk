@@ -16,7 +16,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.user_tokens import (
@@ -60,7 +60,7 @@ class UserTokensAPI(BaseAPI):
             ... )
             >>> print(f"Token: {token.token}")
         """
-        data: dict = {"name": name}
+        data: dict[str, Any] = {"name": name}
 
         if login:
             data["login"] = login
@@ -83,7 +83,7 @@ class UserTokensAPI(BaseAPI):
         Example:
             >>> client.user_tokens.revoke(name="old-token")
         """
-        data: dict = {"name": name}
+        data: dict[str, Any] = {"name": name}
         if login:
             data["login"] = login
 

@@ -5,7 +5,7 @@ This module provides models for the /api/sources endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -60,7 +60,7 @@ class SourcesResponse(SonarQubeModel):
         sources: List of source lines.
     """
 
-    sources: List[SourceLine] = Field(
+    sources: list[SourceLine] = Field(
         default_factory=list,
         description="Source lines",
     )
@@ -73,4 +73,4 @@ class ScmResponse(SonarQubeModel):
         scm: SCM information by line.
     """
 
-    scm: Optional[List[List]] = Field(default=None, description="SCM information")
+    scm: Optional[list[list[Any]]] = Field(default=None, description="SCM information")

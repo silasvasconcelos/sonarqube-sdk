@@ -17,7 +17,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.measures import (
@@ -39,8 +39,8 @@ class MeasuresAPI(BaseAPI):
     def component(
         self,
         component: str,
-        metric_keys: List[str],
-        additional_fields: Optional[List[str]] = None,
+        metric_keys: list[str],
+        additional_fields: Optional[list[str]] = None,
         branch: Optional[str] = None,
         pull_request: Optional[str] = None,
     ) -> ComponentMeasuresResponse:
@@ -65,7 +65,7 @@ class MeasuresAPI(BaseAPI):
             >>> for measure in measures.component.measures:
             ...     print(f"{measure.metric}: {measure.value}")
         """
-        params: dict = {
+        params: dict[str, Any] = {
             "component": component,
             "metricKeys": ",".join(metric_keys),
         }
@@ -82,8 +82,8 @@ class MeasuresAPI(BaseAPI):
     def component_tree(
         self,
         component: str,
-        metric_keys: List[str],
-        additional_fields: Optional[List[str]] = None,
+        metric_keys: list[str],
+        additional_fields: Optional[list[str]] = None,
         asc: Optional[bool] = None,
         branch: Optional[str] = None,
         metric_period_sort: Optional[str] = None,
@@ -93,7 +93,7 @@ class MeasuresAPI(BaseAPI):
         ps: Optional[int] = None,
         pull_request: Optional[str] = None,
         q: Optional[str] = None,
-        qualifiers: Optional[List[str]] = None,
+        qualifiers: Optional[list[str]] = None,
         s: Optional[str] = None,
         strategy: Optional[str] = None,
     ) -> ComponentTreeMeasuresResponse:
@@ -128,7 +128,7 @@ class MeasuresAPI(BaseAPI):
             >>> for comp in tree.components:
             ...     print(f"{comp.path}: {comp.measures}")
         """
-        params: dict = {
+        params: dict[str, Any] = {
             "component": component,
             "metricKeys": ",".join(metric_keys),
         }
@@ -167,7 +167,7 @@ class MeasuresAPI(BaseAPI):
     def search_history(
         self,
         component: str,
-        metrics: List[str],
+        metrics: list[str],
         branch: Optional[str] = None,
         from_date: Optional[str] = None,
         p: Optional[int] = None,
@@ -197,7 +197,7 @@ class MeasuresAPI(BaseAPI):
             ...     component="my-project", metrics=["coverage"]
             ... )
         """
-        params: dict = {
+        params: dict[str, Any] = {
             "component": component,
             "metrics": ",".join(metrics),
         }

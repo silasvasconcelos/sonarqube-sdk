@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full type hints with Pydantic models
 - Comprehensive documentation with Sphinx
 - Test suite with pytest
-- Multi-version testing with Tox (Python 3.8-3.13)
+- Multi-version testing with Tox (Python 3.9-3.13)
 
 ## [0.1.0] - 2025-01-02
 

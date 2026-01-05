@@ -17,7 +17,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.users import (
@@ -58,7 +58,7 @@ class UsersAPI(BaseAPI):
         email: Optional[str] = None,
         local: Optional[bool] = None,
         password: Optional[str] = None,
-        scm_accounts: Optional[List[str]] = None,
+        scm_accounts: Optional[list[str]] = None,
     ) -> UserCreateResponse:
         """Create a new user.
 
@@ -80,7 +80,7 @@ class UsersAPI(BaseAPI):
             ...     login="jdoe", name="John Doe", email="jdoe@example.com", password="secret"
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "login": login,
             "name": name,
         }
@@ -122,7 +122,7 @@ class UsersAPI(BaseAPI):
         Example:
             >>> user = client.users.deactivate(login="old-user")
         """
-        data: dict = {"login": login}
+        data: dict[str, Any] = {"login": login}
         if anonymize is not None:
             data["anonymize"] = str(anonymize).lower()
 
@@ -203,7 +203,7 @@ class UsersAPI(BaseAPI):
             >>> for user in response.users:
             ...     print(user.name)
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if active is not None:
             params["active"] = str(active).lower()
@@ -235,7 +235,7 @@ class UsersAPI(BaseAPI):
         login: str,
         email: Optional[str] = None,
         name: Optional[str] = None,
-        scm_accounts: Optional[List[str]] = None,
+        scm_accounts: Optional[list[str]] = None,
     ) -> User:
         """Update a user.
 
@@ -253,7 +253,7 @@ class UsersAPI(BaseAPI):
         Example:
             >>> user = client.users.update(login="jdoe", name="John Doe Jr.")
         """
-        data: dict = {"login": login}
+        data: dict[str, Any] = {"login": login}
 
         if email:
             data["email"] = email

@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -72,7 +72,7 @@ class IssueFlow(SonarQubeModel):
         locations: List of locations in the flow.
     """
 
-    locations: List[IssueLocation] = Field(
+    locations: list[IssueLocation] = Field(
         default_factory=list,
         description="List of locations in the flow",
     )
@@ -158,7 +158,7 @@ class Issue(SonarQubeModel):
     effort: Optional[str] = Field(default=None, description="Effort to fix")
     debt: Optional[str] = Field(default=None, description="Technical debt")
     author: Optional[str] = Field(default=None, description="Author")
-    tags: Optional[List[str]] = Field(default=None, description="Tags")
+    tags: Optional[list[str]] = Field(default=None, description="Tags")
     creation_date: Optional[str] = Field(
         default=None,
         alias="creationDate",
@@ -179,8 +179,8 @@ class Issue(SonarQubeModel):
         alias="textRange",
         description="Text range in file",
     )
-    flows: Optional[List[IssueFlow]] = Field(default=None, description="Issue flows")
-    comments: Optional[List[IssueComment]] = Field(
+    flows: Optional[list[IssueFlow]] = Field(default=None, description="Issue flows")
+    comments: Optional[list[IssueComment]] = Field(
         default=None,
         description="Issue comments",
     )
@@ -197,12 +197,12 @@ class Issue(SonarQubeModel):
         alias="ruleDescriptionContextKey",
         description="Rule description context key",
     )
-    message_formattings: Optional[List[Dict[str, Any]]] = Field(
+    message_formattings: Optional[list[dict[str, Any]]] = Field(
         default=None,
         alias="messageFormattings",
         description="Message formattings",
     )
-    code_variants: Optional[List[str]] = Field(
+    code_variants: Optional[list[str]] = Field(
         default=None,
         alias="codeVariants",
         description="Code variants",
@@ -217,7 +217,7 @@ class Issue(SonarQubeModel):
         alias="cleanCodeAttributeCategory",
         description="Clean code attribute category",
     )
-    impacts: Optional[List[Dict[str, Any]]] = Field(
+    impacts: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Issue impacts",
     )
@@ -240,16 +240,16 @@ class IssueSearchResponse(SonarQubeModel):
     """
 
     paging: Optional[Paging] = Field(default=None, description="Paging information")
-    issues: List[Issue] = Field(default_factory=list, description="List of issues")
-    components: Optional[List[Component]] = Field(
+    issues: list[Issue] = Field(default_factory=list, description="List of issues")
+    components: Optional[list[Component]] = Field(
         default=None,
         description="Referenced components",
     )
-    rules: Optional[List[dict]] = Field(
+    rules: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Referenced rules",
     )
-    facets: Optional[List[dict]] = Field(
+    facets: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Facet information",
     )
@@ -270,7 +270,7 @@ class IssueChangelogResponse(SonarQubeModel):
         changelog: List of changelog entries.
     """
 
-    changelog: List[dict] = Field(
+    changelog: list[dict[str, Any]] = Field(
         default_factory=list,
         description="Changelog entries",
     )
@@ -283,7 +283,7 @@ class IssueAuthorsResponse(SonarQubeModel):
         authors: List of author names.
     """
 
-    authors: List[str] = Field(
+    authors: list[str] = Field(
         default_factory=list,
         description="List of authors",
     )
@@ -296,4 +296,4 @@ class IssueTagsResponse(SonarQubeModel):
         tags: List of tags.
     """
 
-    tags: List[str] = Field(default_factory=list, description="List of tags")
+    tags: list[str] = Field(default_factory=list, description="List of tags")

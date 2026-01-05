@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.hotspots import (
@@ -55,7 +55,7 @@ class HotspotsAPI(BaseAPI):
             ...     hotspot="AX123", status="REVIEWED", resolution="SAFE"
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "hotspot": hotspot,
             "status": status,
         }
@@ -69,8 +69,8 @@ class HotspotsAPI(BaseAPI):
     def search(
         self,
         branch: Optional[str] = None,
-        files: Optional[List[str]] = None,
-        hotspots: Optional[List[str]] = None,
+        files: Optional[list[str]] = None,
+        hotspots: Optional[list[str]] = None,
         in_new_code_period: Optional[bool] = None,
         only_mine: Optional[bool] = None,
         owasp_asvs_level: Optional[str] = None,
@@ -107,7 +107,7 @@ class HotspotsAPI(BaseAPI):
             >>> for hotspot in response.hotspots:
             ...     print(f"{hotspot.security_category}: {hotspot.message}")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if branch:
             params["branch"] = branch
@@ -173,7 +173,7 @@ class HotspotsAPI(BaseAPI):
         Example:
             >>> client.hotspots.assign(hotspot="AX123", assignee="jdoe")
         """
-        data: dict = {"hotspot": hotspot}
+        data: dict[str, Any] = {"hotspot": hotspot}
         if assignee:
             data["assignee"] = assignee
         if comment:

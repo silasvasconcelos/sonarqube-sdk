@@ -19,7 +19,7 @@ Example:
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, Optional, Type, TypeVar
+from typing import Any, Optional, TypeVar
 
 import httpx
 from pydantic import BaseModel
@@ -133,14 +133,14 @@ class HTTPClient:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[BaseException]],
+        exc_type: Optional[type[BaseException]],
         exc_val: Optional[BaseException],
         exc_tb: Optional[Any],
     ) -> None:
         """Exit context manager and close client."""
         self.close()
 
-    def _handle_response(self, response: httpx.Response) -> Dict[str, Any]:
+    def _handle_response(self, response: httpx.Response) -> dict[str, Any]:
         """Handle HTTP response and raise appropriate exceptions.
 
         Args:
@@ -169,7 +169,8 @@ class HTTPClient:
             if response.status_code == 204:
                 return {}
             try:
-                return response.json()
+                result: dict[str, Any] = response.json()
+                return result
             except ValueError:
                 # Some endpoints return empty responses
                 return {}
@@ -209,10 +210,10 @@ class HTTPClient:
         self,
         method: str,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
-        json_data: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
+        json_data: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Make an HTTP request to the SonarQube API.
 
         Args:
@@ -271,8 +272,8 @@ class HTTPClient:
     def get(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Make a GET request.
 
         Args:
@@ -290,9 +291,9 @@ class HTTPClient:
     def post(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Make a POST request.
 
         Args:
@@ -314,9 +315,9 @@ class HTTPClient:
         self,
         method: str,
         path: str,
-        response_model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
+        response_model: type[T],
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
     ) -> T:
         """Make a request and deserialize response to a Pydantic model.
 
@@ -344,8 +345,8 @@ class HTTPClient:
     def get_model(
         self,
         path: str,
-        response_model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
+        response_model: type[T],
+        params: Optional[dict[str, Any]] = None,
     ) -> T:
         """Make a GET request and deserialize to a Pydantic model.
 
@@ -362,9 +363,9 @@ class HTTPClient:
     def post_model(
         self,
         path: str,
-        response_model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
-        data: Optional[Dict[str, Any]] = None,
+        response_model: type[T],
+        params: Optional[dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
     ) -> T:
         """Make a POST request and deserialize to a Pydantic model.
 

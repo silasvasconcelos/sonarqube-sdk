@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.settings import (
@@ -58,7 +58,7 @@ class SettingsAPI(BaseAPI):
 
     def reset(
         self,
-        keys: List[str],
+        keys: list[str],
         branch: Optional[str] = None,
         component: Optional[str] = None,
         pull_request: Optional[str] = None,
@@ -76,7 +76,7 @@ class SettingsAPI(BaseAPI):
         Example:
             >>> client.settings.reset(keys=["sonar.links.homepage"], component="my-project")
         """
-        data: dict = {"keys": ",".join(keys)}
+        data: dict[str, Any] = {"keys": ",".join(keys)}
 
         if branch:
             data["branch"] = branch
@@ -92,10 +92,10 @@ class SettingsAPI(BaseAPI):
         key: str,
         branch: Optional[str] = None,
         component: Optional[str] = None,
-        field_values: Optional[List[str]] = None,
+        field_values: Optional[list[str]] = None,
         pull_request: Optional[str] = None,
         value: Optional[str] = None,
-        values: Optional[List[str]] = None,
+        values: Optional[list[str]] = None,
     ) -> None:
         """Set a setting value.
 
@@ -117,7 +117,7 @@ class SettingsAPI(BaseAPI):
             ...     component="my-project",
             ... )
         """
-        data: dict = {"key": key}
+        data: dict[str, Any] = {"key": key}
 
         if branch:
             data["branch"] = branch
@@ -137,7 +137,7 @@ class SettingsAPI(BaseAPI):
     def values(
         self,
         component: Optional[str] = None,
-        keys: Optional[List[str]] = None,
+        keys: Optional[list[str]] = None,
     ) -> SettingsValuesResponse:
         """Get settings values.
 
@@ -153,7 +153,7 @@ class SettingsAPI(BaseAPI):
             >>> for setting in response.settings:
             ...     print(f"{setting.key}: {setting.value}")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if component:
             params["component"] = component

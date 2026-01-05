@@ -13,7 +13,7 @@ A fully-typed Python SDK for the SonarQube API.
 - **Type Safety**: Complete type hints with Pydantic models
 - **Authentication**: Support for both token and basic authentication
 - **Async Support**: Built on httpx for modern async/sync HTTP handling
-- **Python 3.8+**: Compatible with Python 3.8 through 3.13
+- **Python 3.9+**: Compatible with Python 3.9 through 3.13
 
 ## Installation
 

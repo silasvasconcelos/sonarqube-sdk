@@ -21,7 +21,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.projects import (
@@ -60,9 +60,9 @@ class ProjectsAPI(BaseAPI):
         self,
         analyzed_before: Optional[str] = None,
         on_provisioned_only: Optional[bool] = None,
-        projects: Optional[List[str]] = None,
+        projects: Optional[list[str]] = None,
         q: Optional[str] = None,
-        qualifiers: Optional[List[str]] = None,
+        qualifiers: Optional[list[str]] = None,
         visibility: Optional[str] = None,
     ) -> None:
         """Delete multiple projects at once.
@@ -85,7 +85,7 @@ class ProjectsAPI(BaseAPI):
         Example:
             >>> client.projects.bulk_delete(projects=["project1", "project2"])
         """
-        data: dict = {}
+        data: dict[str, Any] = {}
         if analyzed_before:
             data["analyzedBefore"] = analyzed_before
         if on_provisioned_only is not None:
@@ -216,10 +216,10 @@ class ProjectsAPI(BaseAPI):
         analyzed_before: Optional[str] = None,
         on_provisioned_only: Optional[bool] = None,
         p: Optional[int] = None,
-        projects: Optional[List[str]] = None,
+        projects: Optional[list[str]] = None,
         ps: Optional[int] = None,
         q: Optional[str] = None,
-        qualifiers: Optional[List[str]] = None,
+        qualifiers: Optional[list[str]] = None,
         s: Optional[str] = None,
         visibility: Optional[str] = None,
     ) -> ProjectSearchResponse:
@@ -246,7 +246,7 @@ class ProjectsAPI(BaseAPI):
             >>> for project in response.components:
             ...     print(project.name)
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
         if analyzed_before:
             params["analyzedBefore"] = analyzed_before
         if on_provisioned_only is not None:

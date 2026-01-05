@@ -21,7 +21,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.applications import (
@@ -133,8 +133,8 @@ class ApplicationsAPI(BaseAPI):
         self,
         application: str,
         branch: str,
-        project: List[str],
-        project_branch: Optional[List[str]] = None,
+        project: list[str],
+        project_branch: Optional[list[str]] = None,
     ) -> None:
         """Create a new branch for an application.
 
@@ -158,7 +158,7 @@ class ApplicationsAPI(BaseAPI):
             ...     project_branch=["feature-x", "feature-x"],
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "application": application,
             "branch": branch,
             "project": project,
@@ -307,7 +307,7 @@ class ApplicationsAPI(BaseAPI):
             },
         )
 
-    def set_tags(self, application: str, tags: List[str]) -> None:
+    def set_tags(self, application: str, tags: list[str]) -> None:
         """Set tags on an application.
 
         Requires 'Administrator' permission on the application.
@@ -369,7 +369,7 @@ class ApplicationsAPI(BaseAPI):
         self,
         application: str,
         branch: Optional[str] = None,
-    ) -> dict:
+    ) -> dict[str, Any]:
         """Get the leak period for an application.
 
         Requires 'Browse' permission on the application.
@@ -432,8 +432,8 @@ class ApplicationsAPI(BaseAPI):
         application: str,
         branch: str,
         name: str,
-        project: List[str],
-        project_branch: Optional[List[str]] = None,
+        project: list[str],
+        project_branch: Optional[list[str]] = None,
     ) -> None:
         """Update an application branch.
 
@@ -458,7 +458,7 @@ class ApplicationsAPI(BaseAPI):
             ...     project=["project1", "project2"],
             ... )
         """
-        data: dict = {
+        data: dict[str, Any] = {
             "application": application,
             "branch": branch,
             "name": name,

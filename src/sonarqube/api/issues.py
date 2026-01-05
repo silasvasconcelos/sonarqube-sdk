@@ -20,7 +20,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.issues import (
@@ -114,7 +114,7 @@ class IssuesAPI(BaseAPI):
             >>> # Unassign
             >>> issue = client.issues.assign(issue="AXoN-12345")
         """
-        data: dict = {"issue": issue}
+        data: dict[str, Any] = {"issue": issue}
         if assignee:
             data["assignee"] = assignee
 
@@ -156,15 +156,15 @@ class IssuesAPI(BaseAPI):
 
     def bulk_change(
         self,
-        issues: List[str],
-        add_tags: Optional[List[str]] = None,
+        issues: list[str],
+        add_tags: Optional[list[str]] = None,
         assign: Optional[str] = None,
         comment: Optional[str] = None,
         do_transition: Optional[str] = None,
-        remove_tags: Optional[List[str]] = None,
+        remove_tags: Optional[list[str]] = None,
         set_severity: Optional[str] = None,
         set_type: Optional[str] = None,
-    ) -> dict:
+    ) -> dict[str, Any]:
         """Bulk change issues.
 
         Requires authentication and 'Browse' permission on the project.
@@ -187,7 +187,7 @@ class IssuesAPI(BaseAPI):
             ...     issues=["AXoN-12345", "AXoN-12346"], add_tags=["team-a"], assign="john"
             ... )
         """
-        data: dict = {"issues": ",".join(issues)}
+        data: dict[str, Any] = {"issues": ",".join(issues)}
 
         if add_tags:
             data["add_tags"] = ",".join(add_tags)
@@ -303,42 +303,42 @@ class IssuesAPI(BaseAPI):
 
     def search(
         self,
-        additional_fields: Optional[List[str]] = None,
+        additional_fields: Optional[list[str]] = None,
         asc: Optional[bool] = None,
         assigned: Optional[bool] = None,
-        assignees: Optional[List[str]] = None,
+        assignees: Optional[list[str]] = None,
         author: Optional[str] = None,
         branch: Optional[str] = None,
-        clean_code_attribute_categories: Optional[List[str]] = None,
-        code_variants: Optional[List[str]] = None,
-        component_keys: Optional[List[str]] = None,
+        clean_code_attribute_categories: Optional[list[str]] = None,
+        code_variants: Optional[list[str]] = None,
+        component_keys: Optional[list[str]] = None,
         created_after: Optional[str] = None,
         created_at: Optional[str] = None,
         created_before: Optional[str] = None,
         created_in_last: Optional[str] = None,
-        directories: Optional[List[str]] = None,
-        facets: Optional[List[str]] = None,
-        files: Optional[List[str]] = None,
-        impact_severities: Optional[List[str]] = None,
-        impact_software_qualities: Optional[List[str]] = None,
+        directories: Optional[list[str]] = None,
+        facets: Optional[list[str]] = None,
+        files: Optional[list[str]] = None,
+        impact_severities: Optional[list[str]] = None,
+        impact_software_qualities: Optional[list[str]] = None,
         in_new_code_period: Optional[bool] = None,
-        issue_statuses: Optional[List[str]] = None,
-        issues: Optional[List[str]] = None,
-        languages: Optional[List[str]] = None,
+        issue_statuses: Optional[list[str]] = None,
+        issues: Optional[list[str]] = None,
+        languages: Optional[list[str]] = None,
         on_component_only: Optional[bool] = None,
         p: Optional[int] = None,
-        project_keys: Optional[List[str]] = None,
+        project_keys: Optional[list[str]] = None,
         ps: Optional[int] = None,
         pull_request: Optional[str] = None,
-        resolutions: Optional[List[str]] = None,
+        resolutions: Optional[list[str]] = None,
         resolved: Optional[bool] = None,
-        rules: Optional[List[str]] = None,
+        rules: Optional[list[str]] = None,
         s: Optional[str] = None,
-        scopes: Optional[List[str]] = None,
-        severities: Optional[List[str]] = None,
-        statuses: Optional[List[str]] = None,
-        tags: Optional[List[str]] = None,
-        types: Optional[List[str]] = None,
+        scopes: Optional[list[str]] = None,
+        severities: Optional[list[str]] = None,
+        statuses: Optional[list[str]] = None,
+        tags: Optional[list[str]] = None,
+        types: Optional[list[str]] = None,
     ) -> IssueSearchResponse:
         """Search for issues.
 
@@ -392,7 +392,7 @@ class IssuesAPI(BaseAPI):
             >>> for issue in response.issues:
             ...     print(f"{issue.severity}: {issue.message}")
         """
-        params: dict = {}
+        params: dict[str, Any] = {}
 
         if additional_fields:
             params["additionalFields"] = ",".join(additional_fields)
@@ -495,7 +495,7 @@ class IssuesAPI(BaseAPI):
         )
         return Issue.model_validate(response.get("issue", response))
 
-    def set_tags(self, issue: str, tags: List[str]) -> Issue:
+    def set_tags(self, issue: str, tags: list[str]) -> Issue:
         """Set tags for an issue.
 
         Requires authentication and 'Browse' permission on the project.

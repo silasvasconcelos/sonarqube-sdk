@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from sonarqube.api.base import BaseAPI
 from sonarqube.models.components import (
@@ -75,7 +75,7 @@ class ComponentsAPI(BaseAPI):
         ps: Optional[int] = None,
         pull_request: Optional[str] = None,
         q: Optional[str] = None,
-        qualifiers: Optional[List[str]] = None,
+        qualifiers: Optional[list[str]] = None,
         s: Optional[str] = None,
         strategy: Optional[str] = None,
     ) -> ComponentTreeResponse:
@@ -103,7 +103,7 @@ class ComponentsAPI(BaseAPI):
             >>> for comp in tree.components:
             ...     print(comp.path)
         """
-        params: dict = {"component": component}
+        params: dict[str, Any] = {"component": component}
 
         if asc is not None:
             params["asc"] = str(asc).lower()
@@ -128,7 +128,7 @@ class ComponentsAPI(BaseAPI):
 
     def search(
         self,
-        qualifiers: List[str],
+        qualifiers: list[str],
         p: Optional[int] = None,
         ps: Optional[int] = None,
         q: Optional[str] = None,
@@ -147,7 +147,7 @@ class ComponentsAPI(BaseAPI):
         Example:
             >>> response = client.components.search(qualifiers=["TRK"], q="backend")
         """
-        params: dict = {"qualifiers": ",".join(qualifiers)}
+        params: dict[str, Any] = {"qualifiers": ",".join(qualifiers)}
 
         if p:
             params["p"] = p

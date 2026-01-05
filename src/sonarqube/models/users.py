@@ -5,7 +5,7 @@ This module provides models for the /api/users endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -45,7 +45,7 @@ class User(SonarQubeModel):
         alias="externalProvider",
         description="External provider",
     )
-    groups: Optional[List[str]] = Field(default=None, description="User groups")
+    groups: Optional[list[str]] = Field(default=None, description="User groups")
     tokens_count: Optional[int] = Field(
         default=None,
         alias="tokensCount",
@@ -74,7 +74,7 @@ class UserSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    users: List[User] = Field(default_factory=list, description="List of users")
+    users: list[User] = Field(default_factory=list, description="List of users")
 
 
 class UserCreateResponse(SonarQubeModel):
@@ -103,8 +103,10 @@ class CurrentUserResponse(SonarQubeModel):
     name: Optional[str] = Field(default=None, description="Display name")
     email: Optional[str] = Field(default=None, description="User email")
     local: Optional[bool] = Field(default=None, description="Whether user is local")
-    groups: Optional[List[str]] = Field(default=None, description="User groups")
-    permissions: Optional[dict] = Field(default=None, description="User permissions")
+    groups: Optional[list[str]] = Field(default=None, description="User groups")
+    permissions: Optional[dict[str, Any]] = Field(
+        default=None, description="User permissions"
+    )
     is_logged_in: Optional[bool] = Field(
         default=None,
         alias="isLoggedIn",
@@ -121,4 +123,6 @@ class UserGroupsResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    groups: List[dict] = Field(default_factory=list, description="List of groups")
+    groups: list[dict[str, Any]] = Field(
+        default_factory=list, description="List of groups"
+    )

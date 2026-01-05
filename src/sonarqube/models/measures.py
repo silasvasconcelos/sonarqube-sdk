@@ -5,7 +5,7 @@ This module provides models for the /api/measures endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -24,7 +24,9 @@ class Measure(SonarQubeModel):
 
     metric: str = Field(description="Metric key")
     value: Optional[str] = Field(default=None, description="Measure value")
-    period: Optional[dict] = Field(default=None, description="Period information")
+    period: Optional[dict[str, Any]] = Field(
+        default=None, description="Period information"
+    )
     best_value: Optional[bool] = Field(
         default=None,
         alias="bestValue",
@@ -49,7 +51,7 @@ class MeasureComponent(SonarQubeModel):
     qualifier: Optional[str] = Field(default=None, description="Component qualifier")
     path: Optional[str] = Field(default=None, description="Component path")
     language: Optional[str] = Field(default=None, description="Component language")
-    measures: Optional[List[Measure]] = Field(
+    measures: Optional[list[Measure]] = Field(
         default=None,
         description="List of measures",
     )
@@ -65,8 +67,10 @@ class ComponentMeasuresResponse(SonarQubeModel):
     """
 
     component: MeasureComponent = Field(description="Component with measures")
-    metrics: Optional[List[dict]] = Field(default=None, description="Metrics")
-    period: Optional[dict] = Field(default=None, description="Period information")
+    metrics: Optional[list[dict[str, Any]]] = Field(default=None, description="Metrics")
+    period: Optional[dict[str, Any]] = Field(
+        default=None, description="Period information"
+    )
 
 
 class ComponentTreeMeasuresResponse(SonarQubeModel):
@@ -83,12 +87,14 @@ class ComponentTreeMeasuresResponse(SonarQubeModel):
         alias="baseComponent",
         description="Base component",
     )
-    components: List[MeasureComponent] = Field(
+    components: list[MeasureComponent] = Field(
         default_factory=list,
         description="Child components",
     )
-    metrics: Optional[List[dict]] = Field(default=None, description="Metrics")
-    paging: Optional[dict] = Field(default=None, description="Paging information")
+    metrics: Optional[list[dict[str, Any]]] = Field(default=None, description="Metrics")
+    paging: Optional[dict[str, Any]] = Field(
+        default=None, description="Paging information"
+    )
 
 
 class SearchHistoryResponse(SonarQubeModel):
@@ -99,5 +105,7 @@ class SearchHistoryResponse(SonarQubeModel):
         measures: List of measure histories.
     """
 
-    paging: Optional[dict] = Field(default=None, description="Paging")
-    measures: List[dict] = Field(default_factory=list, description="Measure histories")
+    paging: Optional[dict[str, Any]] = Field(default=None, description="Paging")
+    measures: list[dict[str, Any]] = Field(
+        default_factory=list, description="Measure histories"
+    )

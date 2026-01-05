@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -66,7 +66,7 @@ class ProjectComponent(SonarQubeModel):
         alias="isFavorite",
         description="Whether the project is marked as favorite",
     )
-    tags: Optional[List[str]] = Field(
+    tags: Optional[list[str]] = Field(
         default=None,
         description="Project tags",
     )
@@ -92,7 +92,7 @@ class ProjectSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    components: List[ProjectComponent] = Field(
+    components: list[ProjectComponent] = Field(
         default_factory=list,
         description="List of project components",
     )
@@ -125,7 +125,7 @@ class ExportFindingsResponse(SonarQubeModel):
         alias="exportDate",
         description="Date of the export",
     )
-    findings: Optional[List[dict]] = Field(
+    findings: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="List of findings",
     )

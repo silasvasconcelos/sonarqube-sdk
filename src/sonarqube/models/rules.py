@@ -15,7 +15,7 @@ Example:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from pydantic import Field
 
@@ -109,8 +109,8 @@ class Rule(SonarQubeModel):
         alias="templateKey",
         description="Template rule key",
     )
-    tags: Optional[List[str]] = Field(default=None, description="Rule tags")
-    sys_tags: Optional[List[str]] = Field(
+    tags: Optional[list[str]] = Field(default=None, description="Rule tags")
+    sys_tags: Optional[list[str]] = Field(
         default=None,
         alias="sysTags",
         description="System tags",
@@ -121,7 +121,7 @@ class Rule(SonarQubeModel):
         alias="langName",
         description="Language name",
     )
-    params: Optional[List[RuleParam]] = Field(
+    params: Optional[list[RuleParam]] = Field(
         default=None,
         description="Rule parameters",
     )
@@ -146,16 +146,16 @@ class Rule(SonarQubeModel):
         alias="cleanCodeAttributeCategory",
         description="Clean code attribute category",
     )
-    impacts: Optional[List[Dict[str, Any]]] = Field(
+    impacts: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Rule impacts",
     )
-    description_sections: Optional[List[Dict[str, Any]]] = Field(
+    description_sections: Optional[list[dict[str, Any]]] = Field(
         default=None,
         alias="descriptionSections",
         description="Description sections",
     )
-    education_principles: Optional[List[str]] = Field(
+    education_principles: Optional[list[str]] = Field(
         default=None,
         alias="educationPrinciples",
         description="Education principles",
@@ -182,8 +182,10 @@ class RuleSearchResponse(SonarQubeModel):
     total: int = Field(description="Total number of rules")
     p: int = Field(description="Page number")
     ps: int = Field(description="Page size")
-    rules: List[Rule] = Field(default_factory=list, description="List of rules")
-    facets: Optional[List[dict]] = Field(default=None, description="Facet information")
+    rules: list[Rule] = Field(default_factory=list, description="List of rules")
+    facets: Optional[list[dict[str, Any]]] = Field(
+        default=None, description="Facet information"
+    )
     paging: Optional[Paging] = Field(default=None, description="Paging information")
 
 
@@ -196,7 +198,7 @@ class RuleShowResponse(SonarQubeModel):
     """
 
     rule: Rule = Field(description="The rule details")
-    actives: Optional[List[dict]] = Field(
+    actives: Optional[list[dict[str, Any]]] = Field(
         default=None,
         description="Active instances in quality profiles",
     )
@@ -209,7 +211,7 @@ class RuleRepositoriesResponse(SonarQubeModel):
         repositories: List of repositories.
     """
 
-    repositories: List[dict] = Field(
+    repositories: list[dict[str, Any]] = Field(
         default_factory=list,
         description="List of repositories",
     )
@@ -222,4 +224,4 @@ class RuleTagsResponse(SonarQubeModel):
         tags: List of tags.
     """
 
-    tags: List[str] = Field(default_factory=list, description="List of tags")
+    tags: list[str] = Field(default_factory=list, description="List of tags")

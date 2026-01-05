@@ -5,7 +5,7 @@ This module provides models for the /api/components endpoints.
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import Field
 
@@ -58,7 +58,7 @@ class ComponentShowResponse(SonarQubeModel):
     """
 
     component: ComponentItem = Field(description="The component")
-    ancestors: Optional[List[ComponentItem]] = Field(
+    ancestors: Optional[list[ComponentItem]] = Field(
         default=None,
         description="Ancestor components",
     )
@@ -78,7 +78,7 @@ class ComponentTreeResponse(SonarQubeModel):
         alias="baseComponent",
         description="Base component",
     )
-    components: List[ComponentItem] = Field(
+    components: list[ComponentItem] = Field(
         default_factory=list,
         description="Child components",
     )
@@ -93,7 +93,7 @@ class ComponentSearchResponse(SonarQubeModel):
     """
 
     paging: Paging = Field(description="Paging information")
-    components: List[ComponentItem] = Field(
+    components: list[ComponentItem] = Field(
         default_factory=list,
         description="List of components",
     )

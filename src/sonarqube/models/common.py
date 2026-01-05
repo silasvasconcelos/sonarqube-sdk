@@ -15,7 +15,7 @@ Example:
 from __future__ import annotations
 
 from enum import Enum
-from typing import Generic, List, Optional, TypeVar
+from typing import Any, Generic, Optional, TypeVar
 
 from pydantic import Field
 
@@ -201,7 +201,7 @@ class Branch(SonarQubeModel):
         default=None,
         description="Branch type (LONG, SHORT, PULL_REQUEST)",
     )
-    status: Optional[dict] = Field(
+    status: Optional[dict[str, Any]] = Field(
         default=None,
         description="Analysis status",
     )
@@ -229,7 +229,7 @@ class ErrorResponse(SonarQubeModel):
         errors: List of error messages.
     """
 
-    errors: List[ErrorMessage] = Field(
+    errors: list[ErrorMessage] = Field(
         default_factory=list,
         description="List of error messages",
     )
